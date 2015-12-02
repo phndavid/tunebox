@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="app" ng-app="myApp">
+    <head>
+        <meta charset="utf-8" />
+        <title>TuneBox</title>
+        <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link rel="stylesheet" href="js/jPlayer/jplayer.flat.css" type="text/css" />
+        <link rel="stylesheet" href="css/app.v1.css" type="text/css" />
+        <link rel="shortcut icon" href="images/headphones.png">
+        <!--[if lt IE 9]> <script src="js/ie/html5shiv.js"></script> <script src="js/ie/respond.min.js"></script> <script src="js/ie/excanvas.js"></script> <![endif]-->
+        <!-- <script> JQuery -->
+        <script type="text/javascript" src="js/angularjs/jquery-1.11.1.js"></script>
+        <!-- <script> AngularJS -->
+        <script type="text/javascript" src = "js/angularjs/angular.js"></script>
+        <script type="text/javascript" src="js/angularjs/angular-resource.js"></script>
+        <script type ="text/javascript" src="js/angularjs/angular-route.js"></script>
+        <!-- <script> model AngularJS-->
+        <!--script type="text/javascript" src="js/angularjs/modelo.js"> </script-->
+
+        <script src="js/app.v1.js"></script>
+        <script src="js/app.plugin.js"></script>
+        <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js">
+        </script> <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
+        <script type="text/javascript" src="js/modelo/model.js"></script>
+    </head>
+    <body class="">
+        <section class="vbox">
+            <header class="bg-black lter header header-md navbar navbar-fixed-top-xs">
+                <div class="navbar-header aside bg-danger nav-xs">
+                    <a href="listen.html" class="navbar-brand text-lt"> 
+                        <i class="icon-earphones"></i>  
+                    </a> 
+                </div>
+                <div class="navbar-header aside bg-success nav-xs">
+                    <a href="principal.html" class="navbar-brand text-lt"> 
+                        <i class="icon-disc" ></i> 
+                    </a>
+                </div>
+                <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
+                    <div class="form-group">
+                        <div class="input-group"> 
+                            <span class="input-group-btn"> 
+                                <button type="submit" class="btn btn-sm bg-white btn-icon rounded">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span> 
+                            <input ng-model="searchText" type="text" class="form-control input-sm no-border rounded" placeholder="Search songs, albums..."> 
+                        </div>
+                    </div>
+                </form>
+                <div class="navbar-right ">
+                    <ul class="nav navbar-nav m-n hidden-xs nav-user user">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown"> <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"> <img src="images/a0.png" alt="..."> </span> Avatar <b class="caret"></b> </a> 
+                            <ul class="dropdown-menu animated fadeInRight">
+                                <li> <span class="arrow top"></span> <a href="#">Settings</a> </li>
+                                <li> <a href="profile.html">Profile</a> </li>
+                                <li> <a href="#"> <span class="badge bg-danger pull-right">3</span> Notifications </a> </li>
+                                <li> <a href="docs.html">Help</a> </li>
+                                <li class="divider"></li>
+                                <li> <a href="modal.lockme.html" data-toggle="ajaxModal" >Logout</a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section>
+                <section class="hbox stretch">
+                    <!-- aside-->
+                    <!-- /.aside --> 
+                    <section id="content">
+                        <section class="vbox">
+                            <section class="w-f-md">
+                                <section class="hbox stretch bg-black dker">
+                                    <!-- side content -->
+                                    <aside class="col-sm-5 no-padder" id="sidebar">
+                                        <!-- Top songs-->
+                                        <section class="vbox animated fadeInUp" ng-controller="ControllerPlaylist">
+                                            <section class="scrollable">
+                                                <!-- Playlist -->
+                                                <ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto" >
+                                                    <!-- Audio 1-->
+                                                    <li class="list-group-item" ng-repeat="(index,audio) in playlists | filter:searchTex">
+                                                        <div class="m-t-n-xxs item pos-rlt">
+
+                                                            <img  src="{{audio.poster}}" alt="..." class="poster">
+                                                            <div class="bottom gd bg-info wrapper-lg metadata">
+                                                                <span class="h2 font-thin">{{audio.title}}</span>
+                                                                <br>
+                                                                <span class="pull-left text-lt">Artista: {{audio.artist}}</span>
+                                                                <br>
+                                                                <span class="pull-left text-lt">Album: {{audio.album}}</span>
+                                                                <br>
+                                                                <span class="pull-left text-lt">Letra:<a href="{{audio.url_letra}}" target="_blank" style="color:#01A9DB;"><u> {{audio.url_letra}}</u></a></span>
+                                                                <br>
+                                                                <span class="pull-left text-lt">Video:<a href="{{audio.url_video}}" target="_blank" style="color:#01A9DB;"><u> {{audio.url_video}}</u></a> </span>
+                                                                <div class="top text-right">
+                                                                    <span class="musicbar animate bg-success bg-empty inline m-r-lg m-t" style="width:25px;height:30px">
+                                                                        <span class="bar1 a3 lter"></span>
+                                                                        <span class="bar2 a5 lt"></span>
+                                                                        <span class="bar3 a1 bg"></span>
+                                                                        <span class="bar4 a4 dk"></span>
+                                                                        <span class="bar5 a2 dker"></span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="pull-right m-l">
+                                                            <a href="#" class="m-r-sm">
+
+                                                                <i class="icon-cloud-download"></i>
+
+                                                            </a>
+                                                        </div>
+                                                        <!-- Reproduccir audio (jp-play-me) -->
+                                                        <a href="#" class="jp-play-me m-r-sm pull-left" ng-click="searchAudioTotallyList(audio)">
+                                                            {{index+1}}
+                                                            <i class="icon-control-play text"></i>
+                                                            <i class="icon-control-pause text-active"></i>
+                                                        </a>
+                                                        <div class="clear text-ellipsis"> <span>{{audio.title}}</span> <span class="text-muted"> -- 04:35</span> </div>
+                                                    </li>
+                                                    <!-- end audio 1-->
+                                                </ul>
+                                            </section>
+                                        </section>
+                                    </aside>
+                                    <!-- / side content --> 
+                                    <!--  Top song --> 
+                                    <section class="vbox " style="width: 40%">
+                                        <section class="scrollable hover" >
+                                            <h3 class="font-thin">Top Listas</h3>
+                                            <div class="list-group list-group-lg no-bg auto">
+                                                <a href="#" class="list-group-item clearfix"> 
+                                                    <span class="pull-right h2 text-muted m-l">1</span> 
+                                                    <span class="pull-left thumb-sm avatar m-r"> 
+                                                        <img src="images/m15.jpg" alt="..."> 
+                                                    </span>
+                                                    <span class="clear"> 
+                                                        <span>Name songlist</span> 
+                                                        <small class="text-muted clear text-ellipsis">user@hotmail.com</small> 
+                                                    </span> 
+                                                </a>
+                                            </div>
+                                        </section>
+                                    </section>
+                                    <!-- / Top song -->
+                                    <!--  songList -->
+                                    <section class="col-sm-3 no-padder lt" ng-controller="ControllerSongList">
+                                        <button class="btn btn-block" id="songlists" ng-click="loadTotalSongList()">Load songlist</button>
+                                         <section class="vbox">
+                                            <section class="scrollable hover">
+                                                <ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto" ng-repeat="list in songlists">
+                                                    <li class="item pos-rlt"> 
+                                                        <a class="item-overlay active opacity wrapper-md font-xs text-right"> 
+                                                            <span class="block h3 font-bold text-white text-u-c">{{list.nombre}}
+                                                            </span> <span class="text-muted">{{list.emailUsuario}}</span> 
+                                                        </a>
+                                                        <img class="img-full" src="{{list.rutaImg}}" alt="...">
+                                                        <span class="bottom wrapper-lg block">
+                                                                <a ng-click="value = !value" ng-show="!value" class="pull-left"><i class="icon-arrow-left i-lg pull-left"></i></a>
+                                                        </span>
+                                                        <section class="vbox" ng-show="value">
+                                                            <ul class="list-group list-group-lg no-bg auto m-b-none m-t-n-xxs scrollable list-size">
+                                                                <li class="list-group-item clearfix" ng-repeat="song in list.canciones"> 
+                                                                    <a href="" class="jp-play-me pull-right m-t-sm m-l text-md"> 
+                                                                        <i class="icon-control-play text"></i> 
+                                                                        <i class="icon-control-pause text-active"></i> 
+                                                                    </a> 
+                                                                    <a href="" class="pull-left thumb-sm m-r"> 
+                                                                        <img src="{{song.poster}}" alt="..."> 
+                                                                    </a> 
+                                                                    <a class="clear" href=""> 
+                                                                        <span class="block text-ellipsis">{{song.title}}</span> 
+                                                                        <small class="text-muted">{{song.artist}}</small> 
+                                                                    </a> 
+                                                                </li>
+                                                             </ul>
+                                                            <span class="wrapper-lg block" style="padding: 20px;">
+                                                                <a ng-click="value = !value" class="pull-left"><i class="icon-arrow-left i-lg pull-left"></i></a>
+                                                            </span>
+                                                        </section>
+                                                    </li>
+                                                </ul>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <!--  songList -->
+                                </section>
+                            </section>
+                            <!-- Reproductor -->
+                            <footer class="footer bg-success dker">
+                                <div id="jp_container_N">
+                                    <div class="jp-type-playlist">
+                                        <div id="jplayer_N" class="jp-jplayer hide"></div>
+                                        <div class="jp-gui">
+                                            <div class="jp-video-play hide"> <a class="jp-video-play-icon">play</a> </div>
+                                            <div class="jp-interface">
+                                                <div class="jp-controls">
+                                                    <div><a class="jp-previous"><i class="icon-control-rewind i-lg"></i></a></div>
+                                                    <div> <a class="jp-play"><i class="icon-control-play i-2x"></i></a> <a class="jp-pause hid"><i class="icon-control-pause i-2x"></i></a> </div>
+                                                    <div><a class="jp-next"><i class="icon-control-forward i-lg"></i></a></div>
+                                                    <div class="hide"><a class="jp-stop"><i class="fa fa-stop"></i></a></div>
+                                                    <div><a class="" data-toggle="dropdown" data-target="#playlist"><i class="icon-list"></i></a></div>
+                                                    <div class="jp-progress hidden-xs">
+                                                        <div class="jp-seek-bar dk">
+                                                            <div class="jp-play-bar bg"> </div>
+                                                            <div class="jp-title text-lt">
+                                                                <ul>
+                                                                    <li></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hidden-xs hidden-sm jp-current-time text-xs text-muted"></div>
+                                                    <div class="hidden-xs hidden-sm jp-duration text-xs text-muted"></div>
+                                                    <div class="hidden-xs hidden-sm"> <a class="jp-mute" title="mute"><i class="icon-volume-2"></i></a> <a class="jp-unmute hid" title="unmute"><i class="icon-volume-off"></i></a> </div>
+                                                    <div class="hidden-xs hidden-sm jp-volume">
+                                                        <div class="jp-volume-bar dk">
+                                                            <div class="jp-volume-bar-value lter"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div> <a class="jp-shuffle" title="shuffle"><i class="icon-shuffle text-muted"></i></a> <a class="jp-shuffle-off hid" title="shuffle off"><i class="icon-shuffle text-lt"></i></a> </div>
+                                                    <div> <a class="jp-repeat" title="repeat"><i class="icon-loop text-muted"></i></a> <a class="jp-repeat-off hid" title="repeat off"><i class="icon-loop text-lt"></i></a> </div>
+                                                    <div class="hide"> <a class="jp-full-screen" title="full screen"><i class="fa fa-expand"></i></a> <a class="jp-restore-screen" title="restore screen"><i class="fa fa-compress text-lt"></i></a> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="jp-playlist dropup" id="playlist">
+                                            <ul class="dropdown-menu aside-xl dker">
+                                                <!-- The method Playlist.displayPlaylist() uses this unordered list --> 
+                                                <li class="list-group-item"></li>
+                                            </ul>
+                                        </div>
+                                        <div class="jp-no-solution hide"> <span>Update Required</span> To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. </div>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a> 
+                    </section>
+                </section>
+            </section>
+        </section>
+    </body>
+</html>

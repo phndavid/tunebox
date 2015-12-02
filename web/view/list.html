@@ -1,0 +1,49 @@
+<section class="aside-md bg-light dk" id="sidebar" ng-controller="ControllerSongList">
+    <h2 class="font-thin m-b" style="margin-left: 26.66%">New List</h2>
+    <label>Nombre de la lista: </label>{{name}}
+    <form action="./ServletList" method="post">
+        <label>Nombre lista: </label>
+        <input class="form-control" type="text" name="nameList" id="nameList"  placeholder="Nombre lista"/>
+        <label>Genero lista: </label>
+        <input class="form-control" type="text" name="generoList" id="generoList"  placeholder="Genero lista"/>
+        <label>Ruta imagen: </label>
+        <input class="form-control" type="text" name="rutaImg" id="rutaImg"  placeholder="Ruta imagen"/>
+        <button class="btn btn-block" type="submit" value="ServletList" onclick="createSongList()">New user</button>
+    </form>
+    <section class="vbox">
+        <section class="scroll-y list">
+        <h2 class="font-thin m-b" style="margin-left: 26.66%">PlayLists</h2>
+        <button class="btn bg-danger" type="submit" ng-click="upSongList()">Load</button>
+        <button class="btn bg-success" type="submit" ng-click="saveSonglist()">Save list</button>
+        <ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto">
+            <li class="list-group-item" ng-repeat="list in songlists track by $index">
+                <span class="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                     <img src= "{{list.rutaImg}}" alt="..." class="img-circle">
+                     <i class="on b-light right sm"></i>
+                 </span>
+                <div class="item">
+                    <a href="" ng-click="sayNamelist(list.nombre)" nameList="{{list.nombre}}" genero="{{list.genero}}" route="{{list.rutaImg}}">
+                        <div class="clear">
+                            <span class="block text-ellipsis">{{list.nombre}}</span>
+                            <small class="text-muted">{{list.genero}}</small>
+                            <a ng-click="vals = !vals"><i class="fa fa-sort-asc"></i></a>
+                        </div>
+                    </a>
+                </div>
+                <ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto" ng-show="vals">
+                    <li ng-repeat="song in list.canciones track by $index">
+                        <a href="#" class="jp-play-me m-r-sm pull-left">
+                            <i class="icon-control-play text"></i>
+                            <i class="icon-control-pause text-active"></i>
+                        </a>
+                        <div class="clear">
+                            <span class="block text-ellipsis">{{song.title}}</span>
+                            <small class="text-muted">{{song.artist}}</small>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        </section>
+    </section>
+</section>
